@@ -126,6 +126,28 @@ public class ArrayList<E> implements Lista<E> {
         asegurarGC();
     }
 
+    @Override
+    public void agregarPosicion (E e, int pos){
+        Object[] aux=null;
+        if(pos>0 && pos<indice){
+            if(esVacia()){
+                agregarInicio(e);
+            }else{
+                if(indice==datos.length){
+                    aux=new Object[datos.length+(datos.length/2)];
+                    System.arraycopy(datos, 0, aux, 0, pos);
+                    System.arraycopy(datos, pos, aux, pos+1, indice-pos);
+                    asegurarGC();
+                    datos=aux;
+                }else{
+                    System.arraycopy(datos, pos, aux, pos+1, indice-pos);
+                }
+                datos[pos]=e;
+                indice++;
+            }
+            throw new IndexOutOfBoundsException();
+        }
+    }
     //Un Iterator : Permite recorrer la lista usando un Iterator.
         // Un Iterator es un objeto que permite recorrer una colección
     // elemento por elemento, sin necesidad de acceder directamente
