@@ -187,22 +187,36 @@ public class ArrayList<E> implements Lista<E> {
         if (posicion < 0 || posicion >= indice) {
             throw new IndexOutOfBoundsException("Posición fuera de rango: " + posicion);
         }
-
-        E eliminado = (E) datos[posicion];
-
-        // Desplazamos los elementos a la izquierda para cubrir el hueco
-        int elementosAMover = indice - posicion - 1;
-        if (elementosAMover > 0) {
-            System.arraycopy(datos, posicion + 1, datos, posicion, elementosAMover);
+        if(posicion==0){
+           return eliminarElementoInicio();
         }
-
-        // Limpiamos el espacio duplicado que quedó al final
+        if(posicion==(indice-1)){
+            return eliminarElementoFinal();
+        }
+        E eliminado = (E) datos[posicion];
+        System.arraycopy(datos, posicion+1, datos, posicion, indice-1);
         datos[indice - 1] = null;
         indice--;
-
         return eliminado;
     }
 
+    @Override
+    public E[] convertirArreglo() {
+        // Creamos un arreglo de Object del tamaño exacto de elementos
+        Object[] arreglo = new Object[indice];
+        System.arraycopy(datos, 0, arreglo, 0, indice);
+        // Lo transformamos al tipo E[] en el retorno
+        return (E[]) arreglo;
+    }
+
+    // Regresa el elemento en una posicion particular (Segun image_59e73f.png)
+    @Override
+    public E consultar(int posicion) {
+        if (posicion < 0 || posicion >= indice) {
+            throw new IndexOutOfBoundsException("Posición fuera de rango: " + posicion);
+        }
+        return (E) datos[posicion];
+    }
 
 
 
