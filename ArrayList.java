@@ -166,6 +166,22 @@ public class ArrayList<E> implements Lista<E> {
         return eliminado;
     }
 
+    @Override 
+    public E eliminarElemento(){
+        return eliminarElementoFinal();
+    }
+
+    @Override
+    public E eliminarElementoFinal(){
+        if(esVacia()){
+            throw new IndexOutOfBoundsException("La lista está vacía.");
+        }
+        E eliminado=(E) datos[indice-1];
+        datos[indice-1]=null;
+        indice--;
+        return eliminado;
+    }
+
 
 
 
