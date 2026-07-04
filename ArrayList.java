@@ -182,6 +182,27 @@ public class ArrayList<E> implements Lista<E> {
         return eliminado;
     }
 
+    @Override
+    public E eliminarElementoPosicion(int posicion) {
+        if (posicion < 0 || posicion >= indice) {
+            throw new IndexOutOfBoundsException("Posición fuera de rango: " + posicion);
+        }
+
+        E eliminado = (E) datos[posicion];
+
+        // Desplazamos los elementos a la izquierda para cubrir el hueco
+        int elementosAMover = indice - posicion - 1;
+        if (elementosAMover > 0) {
+            System.arraycopy(datos, posicion + 1, datos, posicion, elementosAMover);
+        }
+
+        // Limpiamos el espacio duplicado que quedó al final
+        datos[indice - 1] = null;
+        indice--;
+
+        return eliminado;
+    }
+
 
 
 
