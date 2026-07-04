@@ -39,6 +39,10 @@ public class ArrayList<E> implements Lista<E> {
             datos[i] = null;
         }
     }
+    @Override
+    public void agregarElemento(E e){
+        agregarFinal(e);
+    }
 
     // Agrega un elemento al final de la lista.
     @Override
@@ -148,6 +152,24 @@ public class ArrayList<E> implements Lista<E> {
             throw new IndexOutOfBoundsException();
         }
     }
+
+    @Override
+    public E eliminarElementoInicio(){
+        if(esVacia()){
+            throw new IndexOutOfBoundsException("La lista está vacía.");
+        }
+        E eliminado=(E) datos[0];
+        System.arraycopy(datos, 1, datos, 0, indice-1);
+
+        datos[indice-1]=null;
+        indice--;
+        return eliminado;
+    }
+
+
+
+
+
     //Un Iterator : Permite recorrer la lista usando un Iterator.
         // Un Iterator es un objeto que permite recorrer una colección
     // elemento por elemento, sin necesidad de acceder directamente
