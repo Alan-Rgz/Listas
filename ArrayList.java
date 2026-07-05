@@ -133,7 +133,7 @@ public class ArrayList<E> implements Lista<E> {
     @Override
     public void agregarPosicion (E e, int pos){
         Object[] aux=null;
-        if(pos>0 && pos<indice){
+        if(pos>=0 && pos<=indice){
             if(esVacia()){
                 agregarInicio(e);
             }else{
@@ -144,13 +144,16 @@ public class ArrayList<E> implements Lista<E> {
                     asegurarGC();
                     datos=aux;
                 }else{
-                    System.arraycopy(datos, pos, aux, pos+1, indice-pos);
+                    System.arraycopy(datos, pos, datos, pos+1, indice-pos);
                 }
                 datos[pos]=e;
                 indice++;
+    
             }
-            throw new IndexOutOfBoundsException();
+            return;
+            
         }
+        throw new IndexOutOfBoundsException();
     }
 
     @Override
