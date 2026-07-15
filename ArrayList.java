@@ -212,7 +212,7 @@ public class ArrayList<E> implements Lista<E> {
         return (E[]) arreglo;
     }
 
-    // Regresa el elemento en una posicion particular (Segun image_59e73f.png)
+    // Regresa el elemento en una posicion particular
     @Override
     public E consultar(int posicion) {
         if (posicion < 0 || posicion >= indice) {
