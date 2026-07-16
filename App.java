@@ -1,7 +1,7 @@
 public class App {
     public static void main(String[] args) throws Exception {
       //Pruebas de metodos arraylists
-      ArrayList<String> Lista=new ArrayList<>();
+      ArrayList<String> Lista= new ArrayList<>();
       //cuando no hay nada de nada
         System.out.println("¿La lista esta vacia? "+ Lista.esVacia());
         System.out.println("¿Cuantos elementos hay en la lista: "+Lista.numElementos());
